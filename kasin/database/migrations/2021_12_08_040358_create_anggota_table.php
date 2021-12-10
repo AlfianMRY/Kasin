@@ -17,7 +17,7 @@ class CreateAnggotaTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('jk');
-            $table->integer('no_hp');
+            $table->string('no_hp');
             $table->string('keterangan');
             $table->integer('user_id');
             $table->timestamps();
