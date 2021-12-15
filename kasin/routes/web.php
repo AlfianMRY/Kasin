@@ -26,8 +26,9 @@ Route::post('/login',[LoginController::class,'loginAuth']);
 Route::get('/register',[LoginController::class,'registerIndex'])->name('register');
 Route::post('/register',[LoginController::class,'registerStore']);
 
+Route::get('logout',[LoginController::class, 'logOut']);
 // Route::get('/', [AnggotaController::class,'index']);
-Route::resource('/anggota',AnggotaController::class);
+Route::resource('/anggota',AnggotaController::class)->middleware('auth');
 
 Route::get('/dashboard',function(){
     $active = 'dashboard';

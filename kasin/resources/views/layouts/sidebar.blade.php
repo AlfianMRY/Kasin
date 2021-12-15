@@ -17,7 +17,7 @@
         <div class="info">
           <a href="#" class="d-block">{{ $user->name }}</a>
         </div>
-        <a href="" class="btn btn-outline-danger ml-auto btn-sm">Logout</a>
+        <a href="/logout" class="btn btn-outline-danger ml-auto btn-sm">Logout</a>
       </div>
 
       <!-- SidebarSearch Form -->

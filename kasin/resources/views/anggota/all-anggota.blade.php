@@ -33,9 +33,7 @@
             <th>Gender</th>
             <th>Milik</th>
             <th>Status</th>
-            <th>
-              Action
-            </th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -98,8 +96,8 @@
                         <div class="form-group">
                           <label>Gender</label>
                           <select name="jk" class="form-control" required>
-                              <option value="Wanita" {{ $a->jk == 'Wanita' ? 'selected' : '' }}>Wanita</option>
-                              <option value="Pria" {{ $a->jk == 'Pria' ? 'selected' : '' }}>Pria</option>
+                            <option value="Pria" {{ $a->jk == 'Pria' ? 'selected' : '' }}>Pria</option>
+                            <option value="Wanita" {{ $a->jk == 'Wanita' ? 'selected' : '' }}>Wanita</option>
                           </select>
                         </div>
 

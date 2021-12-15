@@ -52,4 +52,11 @@ class LoginController extends Controller
         Alert::success('Registration Success','Please Login');
         return redirect('/login');
     }
+
+    public function logOut(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 }
