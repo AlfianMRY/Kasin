@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Anggota;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AnggotaController extends Controller
 {
+
+    public function user(){
+        $user = Auth::user();
+        return $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +21,9 @@ class AnggotaController extends Controller
      */
     public function index()
     {
-        $data = Anggota::get();
-        return view('anggota.all-anggota',compact('data'));
+        $user = $this->user();
+        $data = Anggota::where('user_id', $user->id)->get();
+        return view('anggota.all-anggota',compact('data','user'));
     }
 
     /**
@@ -31,33 +39,12 @@ class AnggotaController extends Controller
             'jk' => $request->jk,
             'no_hp' => $request->no_hp,
             'keterangan' => $request->keterangan,
-            'user_id' => 1
+            'user_id' => $this->user()->id
         ];
 
         Anggota::insert($data);
+        Alert::success('Add Data Success','Data Berhasil Di Tambah');
         return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -75,10 +62,11 @@ class AnggotaController extends Controller
             'jk' => $request->jk ?? $old->jk,
             'no_hp' => $request->no_hp ?? $old->no_hp,
             'keterangan' => $request->keterangan ?? $old->keterangan,
-            'user_id' => 1
+            'user_id' => $old->user_id
         ];
 
         $new = $old->update($data);
+        Alert::success('Update Data Success','Data Berhasil Di Edit');
 
         return back();
     }
@@ -92,6 +80,7 @@ class AnggotaController extends Controller
     public function destroy($id)
     {
         Anggota::find($id)->delete();
+        Alert::success('Delete Data Success','Data Berhasil Di Hapus');
         return back();
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AnggotaController;
 
+// use Alert;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +20,17 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/login',[LoginController::class,'loginIndex'])->name('login');
+Route::post('/login',[LoginController::class,'loginAuth']);
+
+Route::get('/register',[LoginController::class,'registerIndex'])->name('register');
+Route::post('/register',[LoginController::class,'registerStore']);
+
 // Route::get('/', [AnggotaController::class,'index']);
 Route::resource('/anggota',AnggotaController::class);
+
+Route::get('/dashboard',function(){
+    $active = 'dashboard';
+    $title = 'Dashboard';
+    return view('index',compact('active','title'));
+});

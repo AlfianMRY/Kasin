@@ -25,7 +25,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <table id="example1" class="table table-bordered  table-hover">
+      <table id="example1" class="table table-bordered  table-hover overflow-hide">
         <thead>
           <tr>
             <th>Nama</th>
@@ -46,9 +46,6 @@
               <td>{{ $a->jk }}</td>
               <td>{{ $a->user->name }}</td>
               <td>{{ $a->keterangan }}</td>
-              <form action="{{ route('anggota.destroy',$a->id) }}" method="post">
-                @csrf
-                @method('delete')
                 <td>
                   <div class="row">
                     <div class="col-sm-6">
@@ -58,14 +55,13 @@
                       </button>
                     </div>
                     <div class="col-sm-6 display-flex">
-                      <button type="submit" class="btn btn-sm bg-danger" onclick="confirm('Yakin ingin di hapus?')">
+                      <button type="submit" class="btn btn-sm bg-danger" data-toggle="modal" data-target="#modal-sm{{ $a->id }}">
                         <i class="fas fa-user-times"></i>
                          Dell
                       </button>
                     </div>
                   </div>
                 </td>
-              </form>
           </tr>
 
         {{-- Edit Data --}}
@@ -130,6 +126,33 @@
           <!-- /.modal-dialog -->
         </div>
 
+        {{-- Delete Data --}}
+        <div class="modal fade" id="modal-sm{{ $a->id }}">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">{{ $a->nama }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                
+              <form action="{{ route('anggota.destroy',$a->id) }}" method="post">
+                @csrf
+                @method('delete')
+                  <p>Yakin Hapus Data {{ $a->nama }} ?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form> 
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 
           @endforeach
         </tbody>

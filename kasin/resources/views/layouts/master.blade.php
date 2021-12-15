@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="{{ asset('') }}assets/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('') }}assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -22,7 +23,7 @@
   {{-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="{{ asset('') }}assets/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div> --}}
-
+  @include('sweetalert::alert')
   @include('layouts.navbar')
 
   @include('layouts.sidebar')
