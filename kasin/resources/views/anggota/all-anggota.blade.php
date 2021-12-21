@@ -2,6 +2,7 @@
 @php
     $title = 'Daftar Anggota';
     $active = 'anggota';
+    $no = 1;
 @endphp
 
 @push('css')
@@ -28,10 +29,10 @@
       <table id="example1" class="table table-bordered  table-hover overflow-hide">
         <thead>
           <tr>
+            <th>No</th>
             <th>Nama</th>
             <th>No Hp</th>
             <th>Gender</th>
-            <th>Milik</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -39,26 +40,22 @@
         <tbody>
           @foreach ($data as $a)
           <tr>
+              <td>{{ $no++ }}</td>
               <td>{{ $a->nama }}</td>
               <td>{{ $a->no_hp }}</td>
               <td>{{ $a->jk }}</td>
-              <td>{{ $a->user->name }}</td>
-              <td>{{ $a->keterangan }}</td>
+              <td>{{ $a->status }}</td>
                 <td>
-                  <div class="row">
-                    <div class="col-sm-6">
+                   <div class="btn-group">
                       <button type="button" class="btn btn-sm bg-warning" data-toggle="modal" data-target="#modal-lg-edit{{ $a->id }}">
-                        <i class="fas fa-user-edit"></i>
+                        <i class="fas fa-edit"></i>
                         Edit 
                       </button>
-                    </div>
-                    <div class="col-sm-6 display-flex">
                       <button type="submit" class="btn btn-sm bg-danger" data-toggle="modal" data-target="#modal-sm{{ $a->id }}">
-                        <i class="fas fa-user-times"></i>
+                        <i class="far fa-trash-alt"></i>
                          Dell
                       </button>
                     </div>
-                  </div>
                 </td>
           </tr>
 
@@ -92,29 +89,39 @@
                       
                       </div>
                       <div class="col-md-6">
-                        {{-- Tingkat --}}
-                        <div class="form-group">
-                          <label>Gender</label>
-                          <select name="jk" class="form-control" required>
-                            <option value="Pria" {{ $a->jk == 'Pria' ? 'selected' : '' }}>Pria</option>
-                            <option value="Wanita" {{ $a->jk == 'Wanita' ? 'selected' : '' }}>Wanita</option>
-                          </select>
+                        {{-- gender --}}
+                        <label>Gender</label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" {{ $a->jk == 'Pria' ? 'checked' : '' }} type="radio" name="jk" value="Pria">
+                          <label class="form-check-label" >Pria</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" {{ $a->jk == 'Wanita' ? 'checked' : '' }} type="radio" name="jk" value="Wanita">
+                          <label class="form-check-label" >Wanita</label>
                         </div>
 
-                        <!-- keterangan -->
-                        <div class="form-group">
+                        <!-- status -->
+                        <div class="form-group mt-4 ">
+                          
                           <label>Status</label>
-                          <select name="keterangan" class="form-control" required>
-                              <option value="Active" {{ $a->keterangan == 'Active' ? 'selected' : '' }}>Active</option>
-                              <option value="Non Active" {{ $a->keterangan == 'Non Active' ? 'selected' : '' }}>Non Active</option>
-                          </select>
+                          <br>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" {{ $a->status == 'Aktif' ? 'checked' : '' }} type="radio" name="status" value="Aktif">
+                            <label class="form-check-label" >Aktif</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" {{ $a->status == 'Tidak Aktif' ? 'checked' : '' }} type="radio" name="status" value="Tidak Aktif">
+                            <label class="form-check-label" >Tidak Aktif</label>
+                          </div>
                         </div>
                       
                       </div>
                     </div>
-                    
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
+                    <div class="modal-footer ml-auto d-flex">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -128,7 +135,7 @@
         <div class="modal fade" id="modal-sm{{ $a->id }}">
           <div class="modal-dialog modal-sm">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header bg-danger">
                 <h4 class="modal-title">{{ $a->nama }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -141,9 +148,9 @@
                 @method('delete')
                   <p>Yakin Hapus Data {{ $a->nama }} ?</p>
                 </div>
-                <div class="modal-footer justify-content-between">
+                <div class="modal-footer ml-auto">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Delete</button>
                 </div>
             </form> 
             </div>
@@ -201,29 +208,40 @@
               
               </div>
               <div class="col-md-6">
-                {{-- gender --}}
-                <div class="form-group">
+                  {{-- gender --}}
                   <label>Gender</label>
-                  <select name="jk" class="form-control" required>
-                      <option value="Pria">Pria</option>
-                      <option value="Wanita">Wanita</option>
-                  </select>
-                </div>
-                {{-- status --}}
-                <div class="form-group">
-                  <label>Status</label>
-                  <select name="keterangan" class="form-control" required>
-                      <option value="Active">Active</option>
-                      <option value="Non Active">Non Active</option>
-                  </select>
-                </div>
+                  <br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="jk" value="Pria">
+                    <label class="form-check-label" >Pria</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="jk" value="Wanita">
+                    <label class="form-check-label" >Wanita</label>
+                  </div>
+
+                  <!-- status -->
+                  <div class="form-group mt-4 ">
+                    
+                    <label>Status</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="status" value="Aktif">
+                      <label class="form-check-label" >Aktif</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="status" value="Tidak Aktif">
+                      <label class="form-check-label" >Tidak Aktif</label>
+                    </div>
+                  </div>
               
               </div>
             </div>
             
-            
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
+            <div class="modal-footer ml-auto">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary swalDefaultSuccess">Add</button>
+            </div>
           </form>
         </div>
       </div>

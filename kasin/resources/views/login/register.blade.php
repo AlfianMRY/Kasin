@@ -1,5 +1,7 @@
 @extends('login.master')
-
+@php
+    $title = "Register Kasin"
+@endphp
 @section('content')
 <div class="register-box">
     <div class="card card-outline card-primary">
@@ -12,7 +14,7 @@
         <form action="/register" method="post">
             @csrf
           <div class="input-group mb-3">
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Username">
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Nickname">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>

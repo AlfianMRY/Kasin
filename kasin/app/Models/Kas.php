@@ -16,8 +16,8 @@ class Kas extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function anggota(): HasOne
+    public function anggota()
     {
-        return $this->hasOne(Anggota::class);
+        return $this->hasOne(Anggota::class, 'id', 'anggota_id');
     }
 }

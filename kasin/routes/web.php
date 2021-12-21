@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AnggotaController;
 
@@ -27,11 +28,16 @@ Route::get('/register',[LoginController::class,'registerIndex'])->name('register
 Route::post('/register',[LoginController::class,'registerStore']);
 
 Route::get('logout',[LoginController::class, 'logOut']);
-// Route::get('/', [AnggotaController::class,'index']);
-Route::resource('/anggota',AnggotaController::class)->middleware('auth');
 
 Route::get('/dashboard',function(){
     $active = 'dashboard';
     $title = 'Dashboard';
     return view('index',compact('active','title'));
+});
+
+Route::middleware('auth')->group(function () {
+    Route::resource('/anggota',AnggotaController::class);
+    Route::resource('/kas', KasController::class);
+    Route::post('/pengeluaran/{id}',[KasController::class,'pengeluaran']);
+    
 });

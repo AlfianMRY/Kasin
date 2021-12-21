@@ -1,4 +1,7 @@
 @extends('login.master')
+@php
+    $title = "Login Kasin"
+@endphp
 @section('content')
 <div class="card card-outline card-primary">
     <div class="card-header text-center">

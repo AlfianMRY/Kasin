@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ $title ?? 'AdminLTE 3 | Dashboard' }}</title>
+  <link rel="icon" href="{{ asset('img/LogoK.png') }}">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,7 +30,7 @@
   @include('layouts.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper ">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -46,7 +47,7 @@
     <!-- Main content -->
 
 
-    <section class="content">
+    <section class="content ">
         @yield('content')
     </section>
     <!-- /.content -->

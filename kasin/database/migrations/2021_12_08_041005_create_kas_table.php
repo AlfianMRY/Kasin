@@ -15,8 +15,7 @@ class CreateKasTable extends Migration
     {
         Schema::create('kas', function (Blueprint $table) {
             $table->id();
-            $table->integer('uang');
-            $table->date('tgl_tagihan');
+            $table->bigInteger('nominal')->default(0);
             $table->date('tgl_bayar');
             $table->string('keterangan');
             $table->integer('anggota_id');

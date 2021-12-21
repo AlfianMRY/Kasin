@@ -2,8 +2,8 @@
 <aside class="main-sidebar sidebar-dark-warning elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="{{ asset('') }}assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Kasin</span>
+      <img src="{{ asset('img/LogoK.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-bold" style="color: #ffff00">Kas<span style="color: #00ffff">in</span></span>
     </a>
 
     <!-- Sidebar -->
@@ -46,10 +46,10 @@
             </a>
           </li>
           <li class="nav-item {{ ($active == 'anggota') ? 'menu-is-opening menu-open' : (($active == 'absen') ? 'menu-is-opening menu-open' : (($active == 'kas') ? 'menu-is-opening menu-open' : ''))}}">
-            <a href="#" class="nav-link {{ ($active == 'anggota') ? 'active' : (($active == 'absen') ? 'active' : '')}}">
+            <a href="#" class="nav-link {{ ($active == 'anggota') ? 'active' : (($active == 'absen') ? 'active' : (($active == 'kas') ? 'active' : ''))}}">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Anggota
+                Fitur
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -60,12 +60,12 @@
                   <p>Anggota</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="/absen" class="nav-link {{ $active == 'absen' ? ' active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Absen</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a href="/kas" class="nav-link {{ $active == 'kas' ? ' active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>

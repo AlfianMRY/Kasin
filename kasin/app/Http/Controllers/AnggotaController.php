@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Anggota;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -21,6 +22,11 @@ class AnggotaController extends Controller
      */
     public function index()
     {
+        $test = Anggota::find(1);
+        $test2 = DB::table('anggota')->select('nama')->get();
+        // dd($test2);
+        // dd($test->kas[0]->anggota);
+
         $user = $this->user();
         $data = Anggota::where('user_id', $user->id)->get();
         return view('anggota.all-anggota',compact('data','user'));
@@ -38,7 +44,7 @@ class AnggotaController extends Controller
             'nama' => $request->nama,
             'jk' => $request->jk,
             'no_hp' => $request->no_hp,
-            'keterangan' => $request->keterangan,
+            'status' => $request->status,
             'user_id' => $this->user()->id
         ];
 
@@ -61,7 +67,7 @@ class AnggotaController extends Controller
             'nama' => $request->nama ?? $old->nama,
             'jk' => $request->jk ?? $old->jk,
             'no_hp' => $request->no_hp ?? $old->no_hp,
-            'keterangan' => $request->keterangan ?? $old->keterangan,
+            'status' => $request->status ?? $old->status,
             'user_id' => $old->user_id
         ];
 
