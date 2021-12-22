@@ -24,15 +24,15 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <table id="example1" class="table table-bordered table-hover">
+      <table id="kasin" class="table table-bordered table-hover">
         <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama</th>
-          <th>Total Pembayaran</th>
-          <th>Berapa x Bayar</th>
-          <th>Action</th>
-        </tr>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Total Pembayaran</th>
+            <th>Berapa x Bayar</th>
+            <th>Action</th>
+          </tr>
         </thead>
         <tbody>
             @foreach ($anggota as $a)
@@ -79,50 +79,50 @@
 
                 {{-- Bayar Kas --}}
                 <div class="modal fade" id="modal-lg{{ $a->id }}">
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header bg-success">
-                          <h4 class="modal-title">{{ $a->nama }}</h4>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <form action="/kas/{{ $a->id }}" method="post">
-                            @csrf
-                            @method('PUT')
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nominal Bayar</label>
-                                        <input id="nominal" type="number" class="form-control" name="nominal" placeholder="10000" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Tanggal</label>
-                                        <input type="date" class="form-control" name="tgl_bayar"  required>
-                                    </div>
-                                </div>
-                                <label  class="form-label">Keterangan</label>
-                                <textarea class="form-control" name="keterangan" rows="3"></textarea>
-                            </div>
-                            <hr class="my-4">
-                            <div class="row">
-                                <div class="ml-auto">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success"> Tambah</button>
-                                </div>
-                            </div>
-                          </form>
-                        </div>
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header bg-success">
+                        <h4 class="modal-title">{{ $a->nama }}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                       </div>
-                      <!-- /.modal-content -->
+                      <div class="modal-body">
+                        <form action="/kas/{{ $a->id }}" method="post">
+                          @csrf
+                          @method('PUT')
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label>Nominal Bayar</label>
+                                      <input id="nominal" type="number" class="form-control" name="nominal" placeholder="10000" required>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group">
+                                      <label>Tanggal</label>
+                                      <input type="date" class="form-control" name="tgl_bayar"  required>
+                                  </div>
+                              </div>
+                              <label  class="form-label">Keterangan</label>
+                              <textarea class="form-control" name="keterangan" rows="3"></textarea>
+                          </div>
+                          <hr class="my-4">
+                          <div class="row">
+                              <div class="ml-auto">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-success"> Tambah</button>
+                              </div>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                    <!-- /.modal-dialog -->
+                    <!-- /.modal-content -->
                   </div>
+                  <!-- /.modal-dialog -->
+                </div>
             @endforeach
-        </tbody>
+          </tbody>
         
       </table>
     </div>
@@ -137,21 +137,21 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <table id="example1" class="table table-bordered table-hover">
+      <table id="kasout" class="table table-bordered table-hover">
         <thead>
-        <tr>
-          <th>No</th>
-          <th>Tanggal Pengeluaran</th>
-          <th>Nominal Pengeluaran</th>
-          <th>Keterangan Pengeluaran</th>
-          <th class="d-flex">
-            Action
-            <button type="submit" class="btn btn-sm bg-success ml-auto" data-toggle="modal" data-target="#modal-lg-pengeluaran">
-              <i class="fas fa-money-bill-wave"></i>
-                Keluar
-            </button>
-          </th>
-        </tr>
+          <tr>
+            <th>No</th>
+            <th>Tanggal Pengeluaran</th>
+            <th>Nominal Pengeluaran</th>
+            <th>Keterangan Pengeluaran</th>
+            <th class="d-flex">
+              Action
+              <button type="submit" class="btn btn-sm bg-success ml-auto" data-toggle="modal" data-target="#modal-lg-pengeluaran">
+                <i class="fas fa-money-bill-wave"></i>
+                  Keluar
+              </button>
+            </th>
+          </tr>
         </thead>
         <tbody>
             @foreach ($kasout as $k)
@@ -322,10 +322,14 @@
 <script>
     $(function () {
 
-      $("#example1").DataTable({
+      $("#kasin").DataTable({
           "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "responsive": true, "lengthChange": true, "autoWidth": false
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      }).buttons().container().appendTo('#kasin_wrapper .col-md-6:eq(0)');
+      $("#kasout").DataTable({
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        "responsive": true, "lengthChange": true, "autoWidth": false
+      }).buttons().container().appendTo('#kasout_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": true,
