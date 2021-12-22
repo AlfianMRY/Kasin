@@ -63,7 +63,7 @@
                         @endforeach
                         {{ count($tbayar) }}
                     </td>
-                    <td>
+                    <td class="d-flex justify-content-center">
                         <div class="btn-group">
                             <a href="/kas/{{ $a->id }}" class=" btn btn-sm bg-info">
                                 <i class="fas fa-user-secret"></i>
@@ -160,10 +160,92 @@
                   <td>{{ $k->tgl_pengeluaran }}</td>
                   <td>Rp. {{ number_format($k->nominal) }}</td>
                   <td>{{ $k->keterangan }}</td>
-                  <td>
-                        action
+                  <td class="d-flex justify-content-center">
+                    <div class="btn-group">
+                      <button type="submit" class="btn btn-sm bg-warning ml-auto" data-toggle="modal" data-target="#modal-lg-pengeluaran-{{ $k->id }}">
+                        <i class="fas fa-edit"></i>
+                        Edit
+                      </button>
+                      <button type="submit" class="btn btn-sm bg-danger ml-auto" data-toggle="modal" data-target="#modal-sm-del-kasout{{ $k->id }}">
+                        <i class="far fa-trash-alt"></i>
+                        Dell
+                      </button>
+                    </div>
                   </td>
               </tr>
+
+              {{-- Delete --}}
+              <div class="modal fade" id="modal-sm-del-kasout{{ $k->id }}">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                      <h4 class="modal-title">{{ $k->tgl_pengeluaran }}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      
+                    <form action="/pengeluaran/{{ $k->id }}" method="post">
+                      @csrf
+                      @method('delete')
+                        <p>Yakin Hapus Data Tanggal {{ $k->tgl_pengeluaran }} ?</p>
+                      </div>
+                      <div class="modal-footer ml-auto">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                      </div>
+                  </form> 
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+
+              {{-- edit pengeluaran Kas --}}
+              <div class="modal fade" id="modal-lg-pengeluaran-{{ $k->id }}">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header bg-warning">
+                      <h4 class="modal-title">Edit Pengeluaran Kas {{ $user->name }} Tanggal {{ $k->tgl_pengeluaran }}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/pengeluaran/{{ $k->id }}" method="post">
+                        @csrf
+                        @method('put')
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nominal Pengeluaran</label>
+                                    <input id="nominal" type="number" class="form-control" name="nominal" value="{{ $k->nominal }}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tanggal Pengeluaran</label>
+                                    <input type="date" class="form-control" name="tgl_pengeluaran" value="{{ $k->tgl_pengeluaran }}" required>
+                                </div>
+                            </div>
+                            <label  class="form-label">Keterangan</label>
+                            <textarea class="form-control" name="keterangan" rows="3">{{ $k->keterangan }}</textarea>
+                        </div>
+                        <hr class="my-4">
+                        <div class="row">
+                            <div class="ml-auto">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
               @endforeach
         </tbody>
         

@@ -57,6 +57,7 @@ class KasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // Menyimpan data Kas
     public function update(Request $request, $id)
     {
         $data = [
@@ -70,6 +71,37 @@ class KasController extends Controller
         return redirect()->back();
     }
 
+    // edit data kas
+    public function editkas(Request $request, $id)
+    {
+        $old = Kas::find($id);
+        $data = [
+            'nominal' => $request->nominal ?? $old->nominal,
+            'tgl_bayar' => $request->tgl_bayar ?? $old->tgl_bayar,
+            'keterangan' => $request->keterangan ?? $old->keterangan,
+        ];
+        $old->update($data);
+        Alert::success('Berhasil','Kas Berhasil DiUpdate');
+        return redirect()->back();
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Kas::find($id)->delete();
+        Alert::success('Berhasil','Pengeluaran Berhasil Dihapus');
+        return redirect()->back();
+    }
+
+
+    
+    // Menyimpan data Pengeluaran
     public function pengeluaran(Request $request, $id) 
     {
         $data = [
@@ -83,14 +115,27 @@ class KasController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    // Edit Pengeluaran
+    public function editpengeluaran(Request $request, $id)
     {
-        //
+        $old = DB::table('pengeluaran')->where('id',$id);
+        $data = [
+            'nominal' => $request->nominal ?? $old->nominal,
+            'tgl_pengeluaran' => $request->tgl_pengeluaran ?? $old->tgl_pengeluaran,
+            'keterangan' => $request->keterangan ?? $old->keterangan,
+        ];
+        // dd($old,$data);
+        $old->update($data);
+        Alert::success('Berhasil','Pengeluaran Berhasil DiUpdate');
+        return redirect()->back();
+
+    }
+
+    // delete pengeluaran
+    public function dellkas($id)
+    {
+        DB::table('pengeluaran')->where('id',$id)->delete();
+        Alert::success('Berhasil','Pengeluaran Berhasil Dihapus');
+        return redirect()->back();
     }
 }

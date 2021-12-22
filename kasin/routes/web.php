@@ -38,6 +38,9 @@ Route::get('/dashboard',function(){
 Route::middleware('auth')->group(function () {
     Route::resource('/anggota',AnggotaController::class);
     Route::resource('/kas', KasController::class);
+    Route::post('/kas/{id}', [KasController::class,'editkas']);
     Route::post('/pengeluaran/{id}',[KasController::class,'pengeluaran']);
+    Route::put('/pengeluaran/{id}',[KasController::class,'editpengeluaran']);
+    Route::delete('/pengeluaran/{id}',[KasController::class, 'dellkas']);
     
 });
