@@ -81,7 +81,8 @@
 }
 
 .footer {
-    background-image: linear-gradient(to right, white);
+    /* background-image: linear-gradient(to right, white); */
+    background-image: linear-gradient(to right, #80b1cc, #2c92fb);
 }
 
 .footer address {
