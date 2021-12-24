@@ -24,7 +24,11 @@
         <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top"> -->
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container">
-            <img src="{{ asset('') }}img/kasin.png" class="ban-img img-fluid" alt="">
+              <a href="#" class="brand-link">
+                  <img src="{{ asset('img/LogoK.png') }}" width="100" height="100" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                  <span class="brand-text font-weight-bold" style="color: #ffff00">Kas<span style="color: #00ffff">in</span></span>
+                </a>
+            {{-- <img src="{{ asset('') }}img/LogoK.png" class="ban-img img-fluid" alt="" height="50" width="50"> --}}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
               aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -132,7 +136,11 @@
       <div class="row">
         <div class="col-md-5">
           <address>
-            <img src="{{ asset('') }}img/kasin.png" class="img-fluid" alt="#"> 
+              <a href="#" class="brand-link">
+                  <img src="{{ asset('img/LogoK.png') }}" width="100" height="100" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                  <span class="brand-text font-weight-bold" style="color: #ffff00">Kas<span style="color: #00ffff">in</span></span>
+                </a>
+            {{-- <img src="{{ asset('') }}img/kasin.png" class="img-fluid" alt="#">  --}}
           </address>
         </div>
         <div class="col-md-4">
