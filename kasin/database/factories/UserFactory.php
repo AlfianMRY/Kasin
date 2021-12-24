@@ -16,9 +16,10 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $akun = $this->faker->randomElement(['alfian@gmail.com', 'karim@gmail.com']);
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'email' => $akun,
             'email_verified_at' => now(),
             'password' => bcrypt('password'), // password
             'remember_token' => Str::random(10),

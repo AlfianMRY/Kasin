@@ -22,13 +22,13 @@ class AnggotaFactory extends Factory
     public function definition()
     {
         $gender = $this->faker->randomElement(['Pria', 'Wanita']);
-        $keterangan = $this->faker->randomElement(['Active', 'Non Active']);
+        $status = $this->faker->randomElement(['Aktif', 'Tidak Aktif']);
         return [
             'nama' => $this->faker->name(),
             'jk' => $gender,
             'no_hp' => $this->faker->phoneNumber(),
-            'keterangan' => $keterangan,
-            'user_id' => $this->faker->numberBetween(1,4),
+            'status' => $status,
+            'user_id' => $this->faker->numberBetween(1,2), //
 
         ];
     }

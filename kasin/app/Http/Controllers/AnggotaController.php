@@ -22,8 +22,8 @@ class AnggotaController extends Controller
      */
     public function index()
     {
-        $test = Anggota::find(1);
-        $test2 = DB::table('anggota')->select('nama')->get();
+        // $test = Anggota::find(1);
+        // $test2 = DB::table('anggota')->select('nama')->get();
         // dd($test2);
         // dd($test->kas[0]->anggota);
 

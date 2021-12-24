@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ $title ?? 'KASIN' }}</title>
+  <link rel="icon" href="{{ asset('img/LogoK.png') }}">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -14,13 +15,13 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('') }}assets/dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition login-page" style="background-color: yellow">
+<body class="hold-transition login-page" style="background-color: #2c92fb">
   <div class="login-box">
   @include('sweetalert::alert')
   <!-- /.login-logo -->
   @yield('content')
   <!-- /.card -->
-</div>
+  </div>
 <!-- /.login-box -->
 
 <!-- jQuery -->

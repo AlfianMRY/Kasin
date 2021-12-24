@@ -15,7 +15,7 @@
           <img src="{{ asset('') }}assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ $user->name }}</a>
+          <a href="/profil" class="d-block">{{ $user->name }}</a>
         </div>
         <a href="/logout" class="btn btn-outline-danger ml-auto btn-sm">Logout</a>
       </div>

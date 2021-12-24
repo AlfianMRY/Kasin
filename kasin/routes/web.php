@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KasController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\DashboardController;
 
 // use Alert;
 /*
@@ -29,18 +31,13 @@ Route::post('/register',[LoginController::class,'registerStore']);
 
 Route::get('logout',[LoginController::class, 'logOut']);
 
-Route::get('/dashboard',function(){
-    $active = 'dashboard';
-    $title = 'Dashboard';
-    return view('index',compact('active','title'));
-});
-
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'info']);
     Route::resource('/anggota',AnggotaController::class);
     Route::resource('/kas', KasController::class);
     Route::post('/kas/{id}', [KasController::class,'editkas']);
     Route::post('/pengeluaran/{id}',[KasController::class,'pengeluaran']);
     Route::put('/pengeluaran/{id}',[KasController::class,'editpengeluaran']);
     Route::delete('/pengeluaran/{id}',[KasController::class, 'dellkas']);
-    
+    Route::get('/profil', [ProfilController::class, 'profil']);
 });

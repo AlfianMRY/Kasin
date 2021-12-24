@@ -32,7 +32,7 @@
             <th>No</th>
             <th>Nama</th>
             <th>No Hp</th>
-            <th>Gender</th>
+            <th>Jenis Kelamin</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -161,16 +161,7 @@
 
           @endforeach
         </tbody>
-        {{-- <tfoot>
-          <tr>
-              <th>Total Anggota = {{ count($anggota) }}</th>
-              <th>M0 = {{ count($anggota->where('tingkat_id', '1')) }}</th>
-              <th>M1 = {{ count($anggota->where('tingkat_id', '2')) }}</th>
-              <th>M2 = {{ count($anggota->where('tingkat_id', '3')) }}</th>
-              <th>M3 = {{ count($anggota->where('tingkat_id', '4')) }}</th>
-              <th colspan="2"></th>
-          </tr>
-        </tfoot> --}}
+        
       </table>
     </div>
     <!-- /.card-body -->
@@ -240,7 +231,7 @@
             
             <div class="modal-footer ml-auto">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary swalDefaultSuccess">Add</button>
+              <button type="submit" class="btn btn-primary swalDefaultSuccess">Save</button>
             </div>
           </form>
         </div>
@@ -261,6 +252,16 @@
 <script src="{{ asset('') }}assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="{{ asset('') }}assets/plugins/daterangepicker/daterangepicker.js"></script>
 
+<script src="{{ asset('') }}assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/jszip/jszip.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
 {{-- icon --}}
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -277,7 +278,7 @@
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": true,
-        "searching": false,
+        "searching": true,
         "ordering": true,
         "info": true,
         "autoWidth": true,

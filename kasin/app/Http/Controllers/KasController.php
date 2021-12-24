@@ -28,7 +28,7 @@ class KasController extends Controller
         //
         $user = Auth::user();
         $anggota = DB::table('anggota')->where('user_id', $user->id)->select('id','nama')->get();
-        $kas = DB::table('kas')->select('nominal','anggota_id')->get();
+        $kas = DB::table('kas')->select('nominal','anggota_id')->where('user_id',$user->id)->get();
         $kasout = DB::table('pengeluaran')->where('user_id', $user->id)->get();
         $total = $this->hitungkas($kas);
         $totalout = $this->hitungkas($kasout);
@@ -60,11 +60,13 @@ class KasController extends Controller
     // Menyimpan data Kas
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
         $data = [
             'nominal' => $request->nominal,
             'tgl_bayar' => $request->tgl_bayar,
             'keterangan' => $request->keterangan,
-            'anggota_id' => $id
+            'anggota_id' => $id,
+            'user_id' => $user->id
         ];
         Kas::create($data);
         Alert::success('Berhasil','Kas Berhasil Ditambah');

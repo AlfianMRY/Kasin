@@ -27,7 +27,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             $nama = Auth::user()->name;
             Alert::success('Login Successful','Welcome '.$nama);
-            return redirect()->intended('/anggota');
+            return redirect()->intended('/dashboard');
         }
         Alert::error('Login Failed','Email or Password is Wrong !');
         return back();

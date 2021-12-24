@@ -19,6 +19,7 @@ class CreateKasTable extends Migration
             $table->date('tgl_bayar');
             $table->string('keterangan');
             $table->integer('anggota_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

@@ -10,9 +10,10 @@ class Anggota extends Model
     use HasFactory;
     protected $table = 'anggota';
     protected $guarded = ['id'];
+    // protected $fillable = ['nama','tgl-lahir','jk'];
 
     public function absen() {
-        return $this->belongsTo(Absen::class);
+        return $this->hasMany(Absen::class);
     }
     /**
      * Get all of the comments for the Anggota
