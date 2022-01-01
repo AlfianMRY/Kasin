@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="{{ asset('') }}assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('') }}assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('') }}assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+  <style>
+    
+  </style>
 @endpush
 @section('content')
 <div class="card p-3">
@@ -18,10 +22,11 @@
 </div>
   {{-- Pemasukan --}}
   <div class="card">
-    <div class="card-header d-flex">
+    <div class="card-header  d-flex" >
       <h3 class="card-title">Data Pemasukan Kas</h3>
-      <h3 class="card-title ml-auto">Total Pemasukan Kas Rp. {{ number_format($total) }}</h3>
+      <h3 class="card-title ml-auto" >Total Pemasukan Kas Rp. {{ number_format($total) }}</h3>
     </div>
+    <a href="/exportpdfkasin"class="btn btn-info">Export PDF</a>
     <!-- /.card-header -->
     <div class="card-body">
       <table id="kasin" class="table table-bordered table-hover">
@@ -129,12 +134,47 @@
     <!-- /.card-body -->
   </div>
 
+
+  <hr>
+      <div class="card">
+        <form action="/exportpdfkasout" method="post">
+          @csrf
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Tanggal Mulai</label>
+                  <input type="date" class="form-control" name="from">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Tanggal Akhir</label>
+                  <input type="date" class="form-control" name="to">
+                </div>
+              </div>
+            </div>
+            <div class="text-success">
+              * Jika keduanya kosong maka akan menampilkan semua data
+            </div>
+          </div>
+          <div class="card-body d-flex">
+              <button class="btn btn-success ml-auto" type="submit">Export</button>
+            
+          </div>
+        </form>
+      </div>
+
+
   {{-- Pengeluaran --}}
   <div class="card">
     <div class="card-header d-flex">
       <h3 class="card-title">Data Pengeluaran Kas</h3>
       <h3 class="card-title ml-auto">Total Pengeluaran Kas Rp. {{ number_format($totalout) }}</h3>
     </div>
+      {{-- <a href="/exportpdfkasout" class="btn btn-info">Export PDF</a> --}}
+    
+      
     <!-- /.card-header -->
     <div class="card-body">
       <table id="kasout" class="table table-bordered table-hover">
@@ -323,11 +363,11 @@
     $(function () {
 
       $("#kasin").DataTable({
-          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+          // "buttons": ["excel", "pdf"],
         "responsive": true, "lengthChange": true, "autoWidth": false
       }).buttons().container().appendTo('#kasin_wrapper .col-md-6:eq(0)');
       $("#kasout").DataTable({
-          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+          // "buttons": ["excel", "pdf"],
         "responsive": true, "lengthChange": true, "autoWidth": false
       }).buttons().container().appendTo('#kasout_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({

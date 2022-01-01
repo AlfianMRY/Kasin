@@ -89,4 +89,6 @@ class AnggotaController extends Controller
         Alert::success('Delete Data Success','Data Berhasil Di Hapus');
         return back();
     }
+
+    
 }

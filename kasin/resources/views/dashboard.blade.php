@@ -75,7 +75,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="/kas" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/kas#kasout" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -96,7 +96,7 @@
         </div>
         <!-- ./col -->
         
-      </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
             <div class="card p-3">
@@ -130,8 +130,6 @@
                             </tr>
                         </tfoot>
                     </table>
-                      
-                      
                 </div>
             </div>
         </div>
@@ -149,32 +147,37 @@
                             <tr>
                                 <td>Total Anggota Pria</td>
                                 <td>=</td>
-                                <td>{{ count($cwo) }} Orang </td>
+                                <td>{{ count($cwo) }} </td>
+                                <td> Orang</td>
                             </tr>
                             <tr>
                                 <td>Total Anggota Wanita</td>
                                 <td>=</td>
-                                <td>{{ count($cwe) }} Orang</td>
+                                <td>{{ count($cwe) }} </td>
+                                <td>Orang</td>
                             </tr>
                             <tr>
                                 <td>Total Anggota Aktif</td>
                                 <td>=</td>
-                                <td>{{ $aktif }} Orang</td>
+                                <td>{{ $aktif }}</td>
+                                <td>Orang</td>
                             </tr>
                             <tr>
                                 <td>Total Anggota Tidak Aktif</td>
                                 <td>=</td>
-                                <td>{{ $nonaktif }} Orang</td>
+                                <td>{{ $nonaktif }} </td>
+                                <td>Orang</td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td>
+                                <td colspan="4"></td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr class="text-bold">
                                 <td>Total Anggota Anda</td>
                                 <td>=</td>
-                                <td>{{ $aktif + $nonaktif }} Orang</td>
+                                <td>{{ $aktif + $nonaktif }} </td>
+                                <td>Orang</td>
                             </tr>
                         </tfoot>
                     </table>

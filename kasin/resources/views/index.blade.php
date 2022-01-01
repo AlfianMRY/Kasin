@@ -92,7 +92,7 @@
         
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
-                KASIN adalah aplikasi yang memudahkan kamu dalam mengatur Uang Kas dan absen dalam suatu organisasi.
+                KASIN adalah aplikasi yang memudahkan kamu dalam mengatur Uang Kas dalam suatu organisasi.
               </div>
             </div>
           </div>

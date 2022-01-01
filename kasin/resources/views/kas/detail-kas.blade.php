@@ -4,21 +4,61 @@
     $active = 'kas';
     $no = 1;
 @endphp
+@push('css')
+    <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('') }}assets/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="{{ asset('') }}assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{ asset('') }}assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{ asset('') }}assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  
+@endpush
 @section('content')
 
 <div class="container">
+  <div class="card">
+    <form action="/exportpdfkasincustom/{{ $anggota->id }}" method="post">
+      @csrf
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Tanggal Mulai</label>
+              <input type="date" class="form-control" name="from">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Tanggal Akhir</label>
+              <input type="date" class="form-control" name="to">
+            </div>
+          </div>
+        </div>
+        <div class="text-success">
+          * Jika keduanya kosong maka akan menampilkan semua data
+        </div>
+      </div>
+      <div class="card-body d-flex">
+          <button class="btn btn-success ml-auto" type="submit">Export</button>
+        
+      </div>
+    </form>
+  </div>
 <div class="card">
-    <div class="card-header d-flex">
-      <h2 class="">
-       Detail Kas {{ $anggota->nama }}
-      </h2>
-      <h2 class="ml-auto">
-          Total Bayar : Rp. {{ number_format($total) }}
-      </h2>
+    <div class="card-header ">
+      <div class="row dataTables_wrapper dt-bootstrap4 d-flex">
+        <h2 class="">
+         Detail Kas {{ $anggota->nama }}
+        </h2>
+        <h2 class="ml-auto">
+          Total Bayar : Rp. {{ number_format($total) }} 
+        </h2>
+      </div>
+      <div>
+      </div>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <table id="example1" class="table table-bordered table-hover">
+      <table id="example" class="table table-bordered table-hover">
         <thead>
         <tr>
           <th>No</th>
@@ -130,3 +170,44 @@
     
 </div>
 @endsection
+@push('script')
+<!-- Data table -->
+<script src="{{ asset('') }}assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/daterangepicker/daterangepicker.js"></script>
+
+{{-- <script src="{{ asset('') }}assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/jszip/jszip.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="{{ asset('') }}assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script> --}}
+
+{{-- icon --}}
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+    $(function () {
+      $("#example").DataTable({
+        "responsive": true, "lengthChange": true, "autoWidth": true,
+        // "buttons": [ "excel", "pdf"]
+      }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+      $('#example1').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+      });
+
+      
+    });
+</script>
+@endpush
